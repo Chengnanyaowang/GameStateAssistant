@@ -5,7 +5,7 @@
 <h1 align="center">GameStateAssistant</h1>
 
 <p align="center">
-  <strong>Windows 11 Intel / AMD 双平台游戏性能体检与 1% Low 帧调优助手</strong><br/>
+  <strong>Windows 10 / 11 Intel &amp; AMD 双平台游戏性能体检与 1% Low 帧调优助手</strong><br/>
   <sub>Created by <strong>chengnanyaowang</strong> · .NET 10 WPF Single-File · Zero Telemetry · MIT License</sub>
 </p>
 
@@ -18,7 +18,14 @@
 
 ---
 
-**GameStateAssistant** 是一款面向 **竞技网游与 3A 大作玩家** 的轻量级、零依赖便携式系统体检与稳帧调优工具。默认只读体检、所有改动均经确认清单且支持原值 JSON 快照回滚，无后台常驻服务、无广告遥测。
+**GameStateAssistant** 是一款面向 **Windows 10 / 11 竞技网游与 3A 大作玩家** 的轻量级、零依赖便携式系统体检与稳帧调优工具。默认只读体检、所有改动均经确认清单且支持原值 JSON 快照回滚，无后台常驻服务、无广告遥测。
+
+## 快速下载
+
+前往右侧 [**Releases**](https://github.com/Chengnanyaowang/GameStateAssistant/releases/latest) 页面即可直接下载使用（无需安装）：
+
+* **`GameStateAssistant_Portable_v4.0.exe`**（~62 MB，**推荐**）：内置 `.NET 10` 运行库与全部组件，任意 Windows 10 / 11 (x64) 电脑双击即开。
+* **`GameStateAssistant.exe`**（~1 MB）：轻量框架依赖版，适合本机已安装 `.NET 10 Desktop Runtime` 的用户。
 
 ## 核心特性
 
