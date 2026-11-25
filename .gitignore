@@ -1,0 +1,18 @@
+# .NET / Visual Studio / Build Outputs
+src/bin/
+src/obj/
+*.user
+*.suo
+*.cache
+.vs/
+
+# Compiled binaries & legacy backups (publish releases via GitHub Releases)
+*.exe
+*.pdb
+legacy_v1/
+publish/
+
+# Local OS / Logs
+Thumbs.db
+Desktop.ini
+*.log

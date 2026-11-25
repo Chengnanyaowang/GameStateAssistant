@@ -1,0 +1,82 @@
+<UserControl x:Class="GameStateAssistant.Controls.CheckItemCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GameStateAssistant">
+    <Border x:Name="CardBorder"
+            Background="{StaticResource Brush.Surface.Raised}"
+            BorderBrush="{StaticResource Brush.Stroke.Subtle}"
+            BorderThickness="1"
+            CornerRadius="10"
+            Margin="0,0,0,8"
+            ClipToBounds="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 左侧 3px 状态色条 -->
+            <Border Grid.Column="0"
+                    Background="{Binding Status, Converter={x:Static local:StatusConverters.FgConverter}}"/>
+
+            <!-- 卡片主体 -->
+            <StackPanel Grid.Column="1" Margin="14,12">
+                <Grid Cursor="Hand" MouseLeftButtonUp="Header_Click" Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 左半部分：分类 + 标题 + 权限微标 + 当前状态值 -->
+                    <StackPanel Grid.Column="0" Margin="0,0,14,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="{Binding Status, Converter={x:Static local:StatusConverters.BgConverter}}"
+                                    CornerRadius="4" Padding="7,2" Margin="0,0,8,0">
+                                <TextBlock Text="{Binding StatusBadge}" FontSize="11" FontWeight="SemiBold"
+                                           Foreground="{Binding Status, Converter={x:Static local:StatusConverters.FgConverter}}"/>
+                            </Border>
+                            <Border Background="#12FFFFFF" CornerRadius="4" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="{Binding Category}" FontSize="10.5" Foreground="{StaticResource Brush.Text.Secondary}"/>
+                            </Border>
+                            <TextBlock Text="{Binding Title}" FontSize="13.5" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush.Text.Primary}" VerticalAlignment="Center"/>
+                            <!-- 权限图标微标 (闪电=免权限, 盾牌=提权, 锁=安全权衡) -->
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" Opacity="0.82">
+                                <TextBlock Text="{Binding Converter={x:Static local:StatusConverters.PermissionIconConverter}}"
+                                           FontFamily="{StaticResource Font.Icons}" FontSize="11"
+                                           Foreground="{StaticResource Brush.Text.Secondary}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <TextBlock Text="{Binding PermissionBadge}" FontSize="10.5"
+                                           Foreground="{StaticResource Brush.Text.Tertiary}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Text="{Binding CurrentValue}" FontSize="12.5"
+                                   Foreground="{StaticResource Brush.Text.Secondary}"
+                                   Margin="0,6,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <!-- 右半部分：单项按钮 + 展开箭头 -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button Style="{StaticResource OutlineButton}"
+                                Content="{Binding FixLabel}"
+                                Click="FixBtn_Click"
+                                Visibility="{Binding CanAutoFix, Converter={x:Static local:StatusConverters.BoolToVisConverter}}"
+                                Padding="12,6" FontSize="12" Margin="0,0,10,0"/>
+                        <TextBlock x:Name="Chevron" Text="&#xE70D;" FontFamily="{StaticResource Font.Icons}"
+                                   FontSize="11" Foreground="{StaticResource Brush.Text.Tertiary}"
+                                   VerticalAlignment="Center" Margin="2,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- 折叠详情区域 -->
+                <Border x:Name="DetailPanel" Visibility="Collapsed"
+                        Margin="0,10,0,0" Padding="10,8"
+                        Background="#0AFFFFFF" CornerRadius="6">
+                    <TextBlock Text="{Binding Detail}" FontSize="12"
+                               Foreground="{StaticResource Brush.Text.Secondary}"
+                               TextWrapping="Wrap" LineHeight="18"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

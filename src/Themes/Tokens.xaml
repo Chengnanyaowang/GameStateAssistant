@@ -1,0 +1,70 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ==================== 色彩令牌（石墨 Fluent · Obsidian） ==================== -->
+    <Color x:Key="Color.Surface.Base">#0E1117</Color>
+    <Color x:Key="Color.Surface.Sidebar">#12161F</Color>
+    <Color x:Key="Color.Surface.Raised">#161B24</Color>
+    <Color x:Key="Color.Surface.Overlay">#1D2430</Color>
+    <Color x:Key="Color.Surface.MicaTint">#E60E1117</Color>
+
+    <Color x:Key="Color.Stroke.Subtle">#14FFFFFF</Color>
+    <Color x:Key="Color.Stroke.Strong">#24FFFFFF</Color>
+
+    <Color x:Key="Color.Text.Primary">#E8ECF2</Color>
+    <Color x:Key="Color.Text.Secondary">#9AA4B2</Color>
+    <Color x:Key="Color.Text.Tertiary">#5E6876</Color>
+
+    <Color x:Key="Color.Accent">#22D3EE</Color>
+    <Color x:Key="Color.Accent.Hover">#67E8F9</Color>
+    <Color x:Key="Color.Accent.Pressed">#0891B2</Color>
+    <Color x:Key="Color.Accent.Subtle">#1F22D3EE</Color>
+
+    <Color x:Key="Color.Status.Ok">#34D399</Color>
+    <Color x:Key="Color.Status.OkBg">#2010B981</Color>
+    <Color x:Key="Color.Status.Warn">#FBBF24</Color>
+    <Color x:Key="Color.Status.WarnBg">#22F59E0B</Color>
+    <Color x:Key="Color.Status.Bad">#F87171</Color>
+    <Color x:Key="Color.Status.BadBg">#24EF4444</Color>
+    <Color x:Key="Color.Status.Neutral">#94A3B8</Color>
+    <Color x:Key="Color.Status.NeutralBg">#1EFFFFFF</Color>
+
+    <!-- 画刷 -->
+    <SolidColorBrush x:Key="Brush.Surface.Base" Color="{StaticResource Color.Surface.Base}"/>
+    <SolidColorBrush x:Key="Brush.Surface.Sidebar" Color="{StaticResource Color.Surface.Sidebar}"/>
+    <SolidColorBrush x:Key="Brush.Surface.Raised" Color="{StaticResource Color.Surface.Raised}"/>
+    <SolidColorBrush x:Key="Brush.Surface.Overlay" Color="{StaticResource Color.Surface.Overlay}"/>
+    <SolidColorBrush x:Key="Brush.Surface.MicaTint" Color="{StaticResource Color.Surface.MicaTint}"/>
+
+    <SolidColorBrush x:Key="Brush.Stroke.Subtle" Color="{StaticResource Color.Stroke.Subtle}"/>
+    <SolidColorBrush x:Key="Brush.Stroke.Strong" Color="{StaticResource Color.Stroke.Strong}"/>
+
+    <SolidColorBrush x:Key="Brush.Text.Primary" Color="{StaticResource Color.Text.Primary}"/>
+    <SolidColorBrush x:Key="Brush.Text.Secondary" Color="{StaticResource Color.Text.Secondary}"/>
+    <SolidColorBrush x:Key="Brush.Text.Tertiary" Color="{StaticResource Color.Text.Tertiary}"/>
+
+    <SolidColorBrush x:Key="Brush.Accent" Color="{StaticResource Color.Accent}"/>
+    <SolidColorBrush x:Key="Brush.Accent.Hover" Color="{StaticResource Color.Accent.Hover}"/>
+    <SolidColorBrush x:Key="Brush.Accent.Pressed" Color="{StaticResource Color.Accent.Pressed}"/>
+    <SolidColorBrush x:Key="Brush.Accent.Subtle" Color="{StaticResource Color.Accent.Subtle}"/>
+
+    <SolidColorBrush x:Key="Brush.Status.Ok" Color="{StaticResource Color.Status.Ok}"/>
+    <SolidColorBrush x:Key="Brush.Status.OkBg" Color="{StaticResource Color.Status.OkBg}"/>
+    <SolidColorBrush x:Key="Brush.Status.Warn" Color="{StaticResource Color.Status.Warn}"/>
+    <SolidColorBrush x:Key="Brush.Status.WarnBg" Color="{StaticResource Color.Status.WarnBg}"/>
+    <SolidColorBrush x:Key="Brush.Status.Bad" Color="{StaticResource Color.Status.Bad}"/>
+    <SolidColorBrush x:Key="Brush.Status.BadBg" Color="{StaticResource Color.Status.BadBg}"/>
+    <SolidColorBrush x:Key="Brush.Status.Neutral" Color="{StaticResource Color.Status.Neutral}"/>
+    <SolidColorBrush x:Key="Brush.Status.NeutralBg" Color="{StaticResource Color.Status.NeutralBg}"/>
+
+    <!-- 字体家族 -->
+    <FontFamily x:Key="Font.Primary">Microsoft YaHei UI, Segoe UI Variable Text</FontFamily>
+    <FontFamily x:Key="Font.Display">Segoe UI Variable Display, Microsoft YaHei UI</FontFamily>
+    <FontFamily x:Key="Font.Icons">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+
+    <!-- 圆角令牌 -->
+    <CornerRadius x:Key="Radius.S">4</CornerRadius>
+    <CornerRadius x:Key="Radius.M">8</CornerRadius>
+    <CornerRadius x:Key="Radius.L">12</CornerRadius>
+
+</ResourceDictionary>

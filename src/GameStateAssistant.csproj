@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\assets\app.ico</ApplicationIcon>
+
+    <AssemblyName>GameStateAssistant</AssemblyName>
+    <RootNamespace>GameStateAssistant</RootNamespace>
+    <Product>GameStateAssistant</Product>
+    <Title>GameStateAssistant</Title>
+    <Authors>chengnanyaowang</Authors>
+    <Company>chengnanyaowang</Company>
+    <Copyright>Copyright (c) 2026 chengnanyaowang</Copyright>
+    <Version>4.0.0</Version>
+    <FileVersion>4.0.0.0</FileVersion>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <Description>Windows 11 Intel/AMD Dual-Platform Gaming Performance &amp; 1% Low FPS Optimizer</Description>
+
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="..\assets\logo.png" Link="Assets\logo.png" />
+  </ItemGroup>
+</Project>

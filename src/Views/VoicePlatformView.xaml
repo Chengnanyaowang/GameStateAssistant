@@ -1,0 +1,191 @@
+<UserControl x:Class="GameStateAssistant.Views.VoicePlatformView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer Padding="24,18">
+        <StackPanel>
+            <!-- 1. 顶部标题与全局动作栏（Grid 严格分栏，杜绝窄屏遮挡） -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,18,0" VerticalAlignment="Center">
+                    <TextBlock Text="Oopz &amp; 完美平台 · 专属降占中心" FontSize="19" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}"/>
+                    <TextBlock x:Name="VpSubtitleText" Text="自动适配 Intel 大小核与 AMD 锐龙，将语音与对战平台物理锁进后台核并压低优先级，绝不触碰反作弊内核，绝不传染游戏进程。"
+                               FontSize="12" Foreground="{StaticResource Brush.Text.Secondary}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Style="{StaticResource OutlineButton}" Content="最小化主窗" ToolTip="最小化 Oopz 与完美平台主窗口以降低渲染开销" Click="MinimizeWindows_Click" Padding="12,8" Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource OutlineButton}" Content="还原全核" ToolTip="恢复 Oopz 与完美平台为默认全核调度" Click="RestoreAffinity_Click" Padding="12,8" Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource PrimaryButton}" Click="IsolateBoth_Click" Padding="14,8">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE72E;" FontFamily="{StaticResource Font.Icons}" FontSize="12" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                            <TextBlock x:Name="BtnIsolateBothLabel" Text="一键双隔离进后台核" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- 2. 双栏专属监控与控制卡片 -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="14"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 左卡：Oopz 语音开黑 -->
+                <Border Grid.Column="0" Background="{StaticResource Brush.Surface.Raised}" BorderBrush="{StaticResource Brush.Stroke.Subtle}" BorderThickness="1" CornerRadius="12" Padding="18">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="32" Height="32" CornerRadius="8" Background="{StaticResource Brush.Accent.Subtle}" Margin="0,0,10,0" VerticalAlignment="Center">
+                                <TextBlock Text="&#xE720;" FontFamily="{StaticResource Font.Icons}" FontSize="15" Foreground="{StaticResource Brush.Accent}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <TextBlock Text="Oopz 语音开黑" FontSize="15.5" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}"/>
+                                <TextBlock x:Name="OopzPathText" Text="检测路径中..." FontSize="11" Foreground="{StaticResource Brush.Text.Tertiary}" TextTrimming="CharacterEllipsis"/>
+                            </StackPanel>
+                            <Border x:Name="OopzBadge" Grid.Column="2" CornerRadius="5" Padding="8,3" VerticalAlignment="Center" Background="{StaticResource Brush.Status.NeutralBg}">
+                                <TextBlock x:Name="OopzBadgeText" Text="未运行" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource Brush.Status.Neutral}"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- 指标条 -->
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#10FFFFFF" CornerRadius="8" Padding="10,8" Margin="0,0,6,0">
+                                <StackPanel>
+                                    <TextBlock Text="实时内存" FontSize="10.5" Foreground="{StaticResource Brush.Text.Tertiary}"/>
+                                    <TextBlock x:Name="OopzRamText" Text="--" FontFamily="{StaticResource Font.Display}" FontSize="15" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#10FFFFFF" CornerRadius="8" Padding="10,8" Margin="3,0">
+                                <StackPanel>
+                                    <TextBlock Text="累计 CPU 耗时" FontSize="10.5" Foreground="{StaticResource Brush.Text.Tertiary}"/>
+                                    <TextBlock x:Name="OopzCpuText" Text="--" FontFamily="{StaticResource Font.Display}" FontSize="15" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Background="#10FFFFFF" CornerRadius="8" Padding="10,8" Margin="6,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="AI 降噪档位" FontSize="10.5" Foreground="{StaticResource Brush.Text.Tertiary}"/>
+                                    <TextBlock x:Name="OopzAiText" Text="--" FontFamily="{StaticResource Font.Display}" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Brush.Status.Ok}" Margin="0,3,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Background="#0B0E14" CornerRadius="8" Padding="11,9" Margin="0,0,0,14">
+                            <StackPanel>
+                                <TextBlock x:Name="OopzDetailText" Text="核心绑定状态：--" FontSize="11.5" Foreground="{StaticResource Brush.Text.Secondary}" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="OopzShortcutText" Text="桌面直启快捷方式：--" FontSize="11" Foreground="{StaticResource Brush.Text.Tertiary}" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Oopz 专属操作 -->
+                        <WrapPanel>
+                            <Button x:Name="BtnIsolateOopz" Style="{StaticResource OutlineButton}" Content="锁定纯 E 核 (免权限)" Click="IsolateOopz_Click" Margin="0,0,8,8"/>
+                            <Button Style="{StaticResource OutlineButton}" Content="AI 降噪 → 关闭 (0)" Click="OopzAiOff_Click" Margin="0,0,8,8"/>
+                            <Button Style="{StaticResource OutlineButton}" Content="AI 降噪 → 轻度 (1)" Click="OopzAiLight_Click" Margin="0,0,0,8"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 右卡：完美世界竞技平台 -->
+                <Border Grid.Column="2" Background="{StaticResource Brush.Surface.Raised}" BorderBrush="{StaticResource Brush.Stroke.Subtle}" BorderThickness="1" CornerRadius="12" Padding="18">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="32" Height="32" CornerRadius="8" Background="{StaticResource Brush.Accent.Subtle}" Margin="0,0,10,0" VerticalAlignment="Center">
+                                <TextBlock Text="&#xE7FC;" FontFamily="{StaticResource Font.Icons}" FontSize="15" Foreground="{StaticResource Brush.Accent}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <TextBlock Text="完美世界竞技平台" FontSize="15.5" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}"/>
+                                <TextBlock x:Name="PwaPathText" Text="检测路径中..." FontSize="11" Foreground="{StaticResource Brush.Text.Tertiary}" TextTrimming="CharacterEllipsis"/>
+                            </StackPanel>
+                            <Border x:Name="PwaBadge" Grid.Column="2" CornerRadius="5" Padding="8,3" VerticalAlignment="Center" Background="{StaticResource Brush.Status.NeutralBg}">
+                                <TextBlock x:Name="PwaBadgeText" Text="未运行" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource Brush.Status.Neutral}"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- 指标条 -->
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#10FFFFFF" CornerRadius="8" Padding="10,8" Margin="0,0,6,0">
+                                <StackPanel>
+                                    <TextBlock Text="进程 / 总内存" FontSize="10.5" Foreground="{StaticResource Brush.Text.Tertiary}"/>
+                                    <TextBlock x:Name="PwaRamText" Text="--" FontFamily="{StaticResource Font.Display}" FontSize="14.5" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#10FFFFFF" CornerRadius="8" Padding="10,8" Margin="3,0">
+                                <StackPanel>
+                                    <TextBlock Text="累计 CPU 耗时" FontSize="10.5" Foreground="{StaticResource Brush.Text.Tertiary}"/>
+                                    <TextBlock x:Name="PwaCpuText" Text="--" FontFamily="{StaticResource Font.Display}" FontSize="15" FontWeight="Bold" Foreground="{StaticResource Brush.Text.Primary}" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Background="#10FFFFFF" CornerRadius="8" Padding="10,8" Margin="6,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="纯 E 核隔离度" FontSize="10.5" Foreground="{StaticResource Brush.Text.Tertiary}"/>
+                                    <TextBlock x:Name="PwaLockText" Text="--" FontFamily="{StaticResource Font.Display}" FontSize="14.5" FontWeight="Bold" Foreground="{StaticResource Brush.Status.Warn}" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Background="#0B0E14" CornerRadius="8" Padding="11,9" Margin="0,0,0,14">
+                            <StackPanel>
+                                <TextBlock x:Name="PwaDetailText" Text="隔离明细：--" FontSize="11.5" Foreground="{StaticResource Brush.Text.Secondary}" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="PwaDiskText" Text="磁盘健康度：--" FontSize="11" Foreground="{StaticResource Brush.Text.Tertiary}" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- 完美平台专属操作 -->
+                        <WrapPanel>
+                            <Button x:Name="BtnIsolatePwa" Style="{StaticResource PrimaryButton}" Content="将完美平台全部界面进程锁进纯 E 核" Click="IsolatePwa_Click" Margin="0,0,8,8"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- 3. CS2 反向 P 核安全校验栏 -->
+            <Border Background="{StaticResource Brush.Surface.Raised}" BorderBrush="{StaticResource Brush.Stroke.Subtle}" BorderThickness="1" CornerRadius="10" Padding="16,13" Margin="0,0,0,14">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="Cs2CheckIconBg" Width="28" Height="28" CornerRadius="7" Background="{StaticResource Brush.Status.OkBg}" Margin="0,0,12,0">
+                            <TextBlock Text="&#xEA18;" FontFamily="{StaticResource Font.Icons}" FontSize="13" Foreground="{StaticResource Brush.Status.Ok}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel>
+                            <TextBlock Text="CS2 进程 P 核完整性反向保护校验" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource Brush.Text.Primary}"/>
+                            <TextBlock x:Name="Cs2VerifyText" Text="未运行（进局后自动校验 6 颗真 P 核未被误锁）" FontSize="11.5" Foreground="{StaticResource Brush.Text.Secondary}" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- 4. 实战零干扰操作贴士 -->
+            <Border Background="#1222D3EE" BorderBrush="#2822D3EE" BorderThickness="1" CornerRadius="10" Padding="16,12">
+                <StackPanel>
+                    <TextBlock Text="零副作用降占黄金习惯（配合上方纯 E 核锁定效果翻倍）" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource Brush.Accent}" Margin="0,0,0,5"/>
+                    <TextBlock Text="• 进游戏前务必将 Oopz 与完美平台主窗口点右上角「×」缩进右下角系统托盘（不是普通最小化），Electron / Flutter 会立刻挂起大厅动画渲染，CPU 与 GPU 占用暴跌 80% 以上。"
+                               FontSize="11.5" Foreground="{StaticResource Brush.Text.Secondary}" TextWrapping="Wrap"/>
+                    <TextBlock Text="• 在完美平台「设置」中关闭「高光时刻自动录制」和「游戏内悬浮窗/战绩覆盖」，避免后台视频编码抢占显卡；对反作弊核心保护进程，本工具会自动安全跳过绝不触碰。"
+                               FontSize="11.5" Foreground="{StaticResource Brush.Text.Secondary}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

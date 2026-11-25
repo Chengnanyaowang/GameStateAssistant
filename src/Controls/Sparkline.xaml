@@ -1,0 +1,16 @@
+<UserControl x:Class="GameStateAssistant.Controls.Sparkline"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="28" SnapsToDevicePixels="True">
+    <Grid ClipToBounds="True">
+        <Polygon x:Name="AreaPoly" StrokeThickness="0">
+            <Polygon.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop x:Name="AreaTop" Color="#3322D3EE" Offset="0"/>
+                    <GradientStop Color="#0022D3EE" Offset="1"/>
+                </LinearGradientBrush>
+            </Polygon.Fill>
+        </Polygon>
+        <Polyline x:Name="LinePoly" Stroke="#22D3EE" StrokeThickness="1.6" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+    </Grid>
+</UserControl>
